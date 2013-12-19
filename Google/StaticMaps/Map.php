@@ -1,5 +1,5 @@
 <?php
-namespace GoogleStaticMaps;
+namespace Google\StaticMaps;
 
 /**
  * Google Static Map.
@@ -39,7 +39,7 @@ class Map {
  *
  * 0: world
  * 21+: individual buildings (roadmap map type)
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#Zoomlevels
  */
 	const ZOOM_LEVEL_0 = 0;
@@ -80,7 +80,7 @@ class Map {
  *
  * 1: standard resolution (desktop)
  * 2: high resolution (mobile)
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#scale_values
  */
 	const SCALE_1 = 1;
@@ -88,7 +88,7 @@ class Map {
 
 /**
  * Image formats.
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#ImageFormats
  */
 	const IMAGE_FORMAT_PNG = 'png';
@@ -100,7 +100,7 @@ class Map {
 
 /**
  * Map types.
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#MapTypes
  */
 	const MAP_TYPE_ROADMAP = 'roadmap';
@@ -110,7 +110,7 @@ class Map {
 
 /**
  * Map style features.
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#StyledMaps
  * @link https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyleFeatureType
  * @TODO Feature sub categories.
@@ -121,7 +121,7 @@ class Map {
 
 /**
  * Map style feature elements.
- * 
+ *
  * @link https://developers.google.com/maps/documentation/staticmaps/#StyledMaps
  */
 	const MAP_STYLE_ELEMENT_ALL = 'all';

@@ -1,5 +1,5 @@
 <?php
-namespace GoogleStaticMaps;
+namespace Google\StaticMaps;
 
 /**
  * Google Static Map Marker Custom Icon.
