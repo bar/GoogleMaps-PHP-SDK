@@ -35,6 +35,11 @@ class Map {
 	const MARKER_SEPARATOR = '&';
 
 /**
+ * Parameter separator.
+ */
+	const PARAMETER_SEPARATOR = '&';
+
+/**
  * Zoom levels.
  *
  * 0: world
@@ -652,7 +657,7 @@ class Map {
 			return;
 		}
 
-		return (string)$Location;
+		return 'center=' . urlencode((string)$Location);
 	}
 
 /**
@@ -666,7 +671,7 @@ class Map {
 			return;
 		}
 
-		return (string)$zoom;
+		return 'zoom=' . (string)$zoom;
 	}
 
 /**
@@ -680,7 +685,7 @@ class Map {
 			return;
 		}
 
-		return implode('x', $size);
+		return 'size=' . implode('x', $size);
 	}
 
 /**
@@ -694,7 +699,7 @@ class Map {
 			return;
 		}
 
-		return $visualRefresh ? 'true' : 'false';
+		return 'visual_refresh=' . ($visualRefresh ? 'true' : 'false');
 	}
 
 /**
@@ -705,7 +710,7 @@ class Map {
 	public function buildScale() {
 		$scale = $this->getScale();
 
-		return (string)$scale;
+		return 'scale=' . (string)$scale;
 	}
 
 /**
@@ -716,7 +721,7 @@ class Map {
 	public function buildFormat() {
 		$format = $this->getFormat();
 
-		return (string)$format;
+		return 'format=' . (string)$format;
 	}
 
 /**
@@ -727,7 +732,7 @@ class Map {
 	public function buildMapType() {
 		$mapType = $this->getMapType();
 
-		return (string)$mapType;
+		return 'mapType=' . (string)$mapType;
 	}
 
 /**
@@ -738,7 +743,7 @@ class Map {
 	public function buildLanguage() {
 		$language = $this->getLanguage();
 
-		return (string)$language;
+		return 'language=' . (string)$language;
 	}
 
 /**
@@ -749,11 +754,13 @@ class Map {
 	public function buildRegion() {
 		$region = $this->getRegion();
 
-		return (string)$region;
+		return 'region=' . (string)$region;
 	}
 
 /**
  * Build the map marker sets.
+ *
+ * Because each MarkerSet needs a 'markers=' prefix when built, conversion must be done here.
  *
  * @return mixed String on success, null on failure.
  */
@@ -764,7 +771,7 @@ class Map {
 		}
 
 		array_walk($markers, function (&$Marker) {
-			$Marker = (string)$Marker;
+			$Marker = 'markers=' . urlencode((string)$Marker);
 		});
 
 		return implode(self::MARKER_SEPARATOR, $markers);
@@ -781,13 +788,11 @@ class Map {
 			return;
 		}
 
-		return $sensor ? 'true' : 'false';
+		return 'sensor=' . ($sensor ? 'true' : 'false');
 	}
 
 /**
  * Return the map url string.
- *
- * Note: the string is not url encoded.
  *
  * @return string
  * @link https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
@@ -845,6 +850,6 @@ class Map {
 
 		self::$builtParams = $params;
 
-		return sprintf($this->_templateUrl, http_build_query($params));
+		return sprintf($this->_templateUrl, implode(self::PARAMETER_SEPARATOR, $params));
 	}
 }
