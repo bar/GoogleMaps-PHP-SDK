@@ -146,7 +146,7 @@ class Map {
 /**
  * Center.
  *
- * @var MapLocation
+ * @var Location
  * @link https://developers.google.com/maps/documentation/staticmaps/#Locations
  */
 	protected $_center = null;
@@ -321,15 +321,15 @@ class Map {
 /**
  * Set the map center.
  *
- * @param mixed $location Array or MapLocation object.
+ * @param mixed $location Array or Location object.
  * @return Map
  */
 	public function setCenter($location) {
 		if (is_array($location)) {
-			$location = new MapLocation($location);
+			$location = new Location($location);
 		}
 
-		if ($location instanceof MapLocation) {
+		if ($location instanceof Location) {
 			$this->_center = $location;
 		}
 
@@ -339,7 +339,7 @@ class Map {
 /**
  * Return the map center.
  *
- * @return MapLocation
+ * @return Location
  */
 	public function getCenter() {
 		return $this->_center;
@@ -804,7 +804,7 @@ class Map {
 		$zoom = $this->buildZoom();
 
 		// Center and zoom are required if markers are not present.
-		if ($markers === null && ($center === null  || $zoom === null)) {
+		if ($markers === null && ($center === null || $zoom === null)) {
 			return '';
 		}
 
